@@ -11,8 +11,16 @@ import lombok.Data;
 @Data
 public class BaseFindRequest {
 
-    private int page;
+    private int pageNumber;
 
-    private int size;
+    private int pageSize;
+
+    public int getBeginItemIndex() {
+        return (this.pageNumber - 1) * this.pageSize + 1;
+    }
+
+    public int getEndItemIndex() {
+        return this.pageNumber * this.pageSize + 1;
+    }
 
 }

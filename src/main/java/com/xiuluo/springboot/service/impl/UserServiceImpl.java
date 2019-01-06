@@ -1,15 +1,13 @@
 package com.xiuluo.springboot.service.impl;
 
-import com.xiuluo.springboot.dao.UserDao;
+import com.xiuluo.springboot.dao.UserMapper;
 import com.xiuluo.springboot.domain.User;
 import com.xiuluo.springboot.request.UserFindRequest;
 import com.xiuluo.springboot.service.UserService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 作者:修罗大人
@@ -21,12 +19,12 @@ import javax.annotation.Resource;
 public class UserServiceImpl implements UserService {
 
     @Resource
-    private UserDao userDao;
+    private UserMapper userMapper;
 
     public boolean addUser(User record){
         boolean result = false;
         try {
-            userDao.save(record);
+            userMapper.insert(record);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,18 +33,11 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
-    public Page<User> findAll(UserFindRequest request)
+    public List<User> findAll(UserFindRequest request)
     {
-        Page<User> all = null;
+        List<User> all = null;
 
-        if (request.getSize() <= 0)
-        {
-            request.setSize(Integer.MAX_VALUE);
-            request.setPage(0);
-        }
-
-        Pageable pageable = PageRequest.of(request.getPage(),request.getSize());
-        all = userDao.findAll(pageable);
+        all = userMapper.findAll(request);
         return all;
     }
 

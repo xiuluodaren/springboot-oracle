@@ -1,6 +1,10 @@
 package com.xiuluo.springboot.dao;
 
 import com.xiuluo.springboot.domain.User;
+import com.xiuluo.springboot.request.UserFindRequest;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 作者:修罗大人
@@ -17,6 +21,8 @@ public interface UserMapper {
     int insertSelective(User record);
 
     User selectByPrimaryKey(Integer id);
+
+    List<User> findAll(@Param("request") UserFindRequest request);
 
     int updateByPrimaryKeySelective(User record);
 

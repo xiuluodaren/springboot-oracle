@@ -2,7 +2,8 @@ package com.xiuluo.springboot.service;
 
 import com.xiuluo.springboot.domain.User;
 import com.xiuluo.springboot.request.UserFindRequest;
-import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 /**
  * 作者:修罗大人
@@ -14,5 +15,5 @@ public interface UserService {
 
     boolean addUser(User record);
 
-    Page<User> findAll(UserFindRequest request);
+    List<User> findAll(UserFindRequest request);
 }

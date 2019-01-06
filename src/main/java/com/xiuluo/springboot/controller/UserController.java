@@ -5,7 +5,6 @@ import com.xiuluo.springboot.domain.User;
 import com.xiuluo.springboot.request.UserFindRequest;
 import com.xiuluo.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,9 +49,9 @@ public class UserController {
 
     @RequestMapping("/findAll")
     @ResponseBody
-    public Page<User> findAll(@RequestBody UserFindRequest request){
+    public List<User> findAll(@RequestBody UserFindRequest request){
 
-        Page<User> all = userService.findAll(request);
+        List<User> all = userService.findAll(request);
 
         return all;
 
